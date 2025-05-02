@@ -2,18 +2,20 @@
 
 import { useChat } from '@ai-sdk/react';
 import ThemeToggle from '@/components/common/ThemeToggle';
-import Messages from '@/components/layout/Messages';
-import InputBox from '@/components/layout/InputBox';
+import ChatPage from '@/components/layout/ChatPage';
+import ChatHistory from '@/components/layout/ChatHistory';
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
-export default function Chat() {
+export default function Page() {
   const { messages, input, handleInputChange, handleSubmit } = useChat();
   return (
-    <div className="flex flex-col justify-between gap-4 w-full h-full min-h-screen max-w-xl py-2 mx-auto stretch">
-      <ThemeToggle className="fixed top-4 right-4" />
-      {/* Chat History */}
-      <Messages messages={messages} />
-      {/* User Input Block */}
-      <InputBox input={input} handleInputChange={handleInputChange} handleSubmit={handleSubmit} />
-    </div>
+    <SidebarProvider>
+      <div className="w-full h-full flex">
+        <ThemeToggle className="fixed top-4 right-4" />
+        <ChatHistory />
+        <SidebarTrigger className="fixed top-4 left-4 cursor-pointer" />
+        <ChatPage messages={messages} input={input} handleInputChange={handleInputChange} handleSubmit={handleSubmit} />
+      </div>
+    </SidebarProvider>
   );
 }
