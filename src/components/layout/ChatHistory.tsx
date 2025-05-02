@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { ChatHistory as ChatHistoryType, createNewChat, deleteChat, getChats, saveChat, editChatTitle } from "@/lib/chat-history";
 import { Sidebar, SidebarContent, SidebarHeader, SidebarTrigger } from "@/components/ui/sidebar";
@@ -14,6 +14,7 @@ export default function ChatHistory() {
   const pathname = usePathname();
   const [chats, setChats] = useState<ChatHistoryType[]>(getChats());
   const [editingChatTitle, setEditingChatTitle] = useState<string | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleNewChat = () => {
     const newChat = createNewChat();
@@ -29,6 +30,9 @@ export default function ChatHistory() {
 
   const handleEditChatTitle = (id: string) => {
     setEditingChatTitle(id);
+    setTimeout(() => {
+      inputRef.current?.focus();
+    }, 0);
   };
 
   return (
@@ -46,14 +50,23 @@ export default function ChatHistory() {
                 className="flex-1 text-left truncate p-2 cursor-pointer"
               >
                 {editingChatTitle === chat.id ? (
-                  <Input title="title" type="text" className="bg-background border-none focus-visible:ring-0" value={chat.title} onChange={(e) => setChats(chats.map(c => c.id === chat.id ? { ...c, title: e.target.value } : c))} onSubmit={() => {
-                    editChatTitle(chat.id, chat.title);
-                    setEditingChatTitle(null);
-                  }} onKeyDown={(e) => {
-                    if (e.key === "Enter") {
+                  <Input 
+                    ref={inputRef}
+                    title="title" 
+                    type="text" 
+                    className="bg-background border-none focus-visible:ring-0" 
+                    value={chat.title} 
+                    onChange={(e) => setChats(chats.map(c => c.id === chat.id ? { ...c, title: e.target.value } : c))} 
+                    onSubmit={() => {
+                      editChatTitle(chat.id, chat.title);
                       setEditingChatTitle(null);
-                    }
-                  }} />
+                    }} 
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        setEditingChatTitle(null);
+                      }
+                    }} 
+                  />
                 ) : (
                   chat.title
                 )}
