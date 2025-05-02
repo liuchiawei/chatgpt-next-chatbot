@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
+import { ChatHistory as ChatHistoryType, createNewChat, deleteChat, getChats, saveChat, editChatTitle } from "@/lib/chat-history";
 import { Sidebar, SidebarContent, SidebarHeader, SidebarTrigger } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import AiProfile from "./AiProfile";
 import { Plus, Pencil, Trash2 } from "lucide-react";
-import { ChatHistory as ChatHistoryType, createNewChat, deleteChat, getChats, saveChat, editChatTitle } from "@/lib/chat-history";
 
 export default function ChatHistory() {
   const router = useRouter();
@@ -32,13 +33,11 @@ export default function ChatHistory() {
 
   return (
     <Sidebar className="bg-background">
-      <SidebarHeader className="p-4 flex justify-between items-end">
-        <SidebarTrigger className="cursor-pointer" />
+      <SidebarHeader className="flex justify-center items-center p-8 relative">
+        <SidebarTrigger className="absolute top-4 right-4 cursor-pointer" />
+        <AiProfile />
       </SidebarHeader>
       <SidebarContent className="px-4">
-        <Button variant="ghost" size="icon" className="cursor-pointer" onClick={handleNewChat}>
-          <Plus className="size-4" />
-        </Button>
         <ul className="space-y-2">
           {chats.map(chat => (
             <li key={chat.id} className={`flex items-center justify-between rounded-lg hover:brightness-95 dark:hover:brightness-120 *:data-list-btn:opacity-0 hover:*:data-list-btn:opacity-100 ${pathname === `/chat/${chat.id}` ? 'bg-zinc-300 dark:bg-zinc-700' : 'bg-zinc-200 dark:bg-zinc-800'}`}>
@@ -74,6 +73,9 @@ export default function ChatHistory() {
             </li>
           ))}
         </ul>
+        <Button variant="ghost" size="icon" className="cursor-pointer" onClick={handleNewChat}>
+          <Plus className="size-4" />
+        </Button>
       </SidebarContent>
     </Sidebar>
   );
