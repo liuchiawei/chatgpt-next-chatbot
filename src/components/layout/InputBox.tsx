@@ -3,6 +3,8 @@ import { Button } from "../ui/button";
 import { Send } from "lucide-react";
 import InputOption from "../common/InputOption";
 import { cn } from "@/lib/utils";
+import { Message } from 'ai';
+import { ChatHistory, saveChat } from '@/lib/chat-history';
 
 export default function InputBox({ input, handleInputChange, handleSubmit, className }: { input: string, handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void, handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void, className?: string }) {
   return (
