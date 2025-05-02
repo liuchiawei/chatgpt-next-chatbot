@@ -59,6 +59,8 @@ export const FileUpload = ({
         className="p-10 group/file block rounded-lg cursor-pointer w-full relative overflow-hidden"
       >
         <input
+          title="File Upload"
+          placeholder="File Upload"
           ref={fileInputRef}
           id="file-upload-handle"
           type="file"
