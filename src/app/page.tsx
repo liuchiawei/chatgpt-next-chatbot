@@ -17,15 +17,6 @@ export default function Page() {
 
   const { messages, input, handleInputChange, handleSubmit } = useChat({
     maxSteps: 5,
-    onResponse: (response) => {
-      const updatedChat = {
-        ...currentChat,
-        messages: messages,
-        updatedAt: new Date()
-      };
-      saveChat(updatedChat);
-      setCurrentChat(updatedChat);
-    },
     onFinish: (message) => {
       const updatedChat = {
         ...currentChat,
