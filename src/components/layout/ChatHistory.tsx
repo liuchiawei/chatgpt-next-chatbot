@@ -1,3 +1,5 @@
+'use client';
+
 import { Sidebar, SidebarContent, SidebarHeader, SidebarTrigger } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { Plus, Trash2 } from "lucide-react";
@@ -23,13 +25,13 @@ export default function ChatHistory() {
 
   return (
     <Sidebar className="bg-background">
-      <SidebarHeader className="p-4 flex justify-between items-center">
+      <SidebarHeader className="p-4 flex justify-between items-end">
         <SidebarTrigger className="cursor-pointer" />
-        <Button variant="ghost" size="icon" onClick={handleNewChat}>
-          <Plus className="h-4 w-4" />
-        </Button>
       </SidebarHeader>
-      <SidebarContent className="px-4">
+      <SidebarContent className="px-4 **:cursor-pointer">
+        <Button variant="ghost" size="icon" onClick={handleNewChat}>
+          <Plus className="size-4" />
+        </Button>
         <ul className="space-y-2">
           {chats.map(chat => (
             <li key={chat.id} className="group flex items-center justify-between p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800">

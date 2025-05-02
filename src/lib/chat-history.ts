@@ -11,7 +11,7 @@ export interface ChatHistory {
 export function createNewChat(): ChatHistory {
   return {
     id: crypto.randomUUID(),
-    title: "新對話",
+    title: "新しい会話",
     messages: [],
     createdAt: new Date(),
     updatedAt: new Date(),
