@@ -39,7 +39,7 @@ export default function ChatHistory() {
     <Sidebar className="bg-background">
       <SidebarHeader className="flex justify-center items-center p-4 relative">
         <SidebarTrigger className="absolute top-4 right-4 cursor-pointer" />
-        <AiProfile className="w-full bg-zinc-200 dark:bg-zinc-800 rounded-lg p-4" />
+        <AiProfile className="w-full rounded-lg p-4" />
       </SidebarHeader>
       <SidebarContent className="px-4">
         <ul className="space-y-2">
