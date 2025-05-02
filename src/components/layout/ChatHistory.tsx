@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { Sidebar, SidebarContent, SidebarHeader, SidebarTrigger } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,6 +10,7 @@ import { ChatHistory as ChatHistoryType, createNewChat, deleteChat, getChats, sa
 
 export default function ChatHistory() {
   const router = useRouter();
+  const pathname = usePathname();
   const [chats, setChats] = useState<ChatHistoryType[]>(getChats());
   const [editingChatTitle, setEditingChatTitle] = useState<string | null>(null);
 
@@ -40,7 +41,7 @@ export default function ChatHistory() {
         </Button>
         <ul className="space-y-2">
           {chats.map(chat => (
-            <li key={chat.id} className="group flex items-center justify-between  rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800">
+            <li key={chat.id} className={`flex items-center justify-between rounded-lg hover:brightness-95 dark:hover:brightness-120 *:data-list-btn:opacity-0 hover:*:data-list-btn:opacity-100 ${pathname === `/chat/${chat.id}` ? 'bg-zinc-300 dark:bg-zinc-700' : 'bg-zinc-200 dark:bg-zinc-800'}`}>
               <button 
                 onClick={() => router.push(`/chat/${chat.id}`)}
                 className="flex-1 text-left truncate p-2 cursor-pointer"
@@ -58,13 +59,14 @@ export default function ChatHistory() {
                   chat.title
                 )}
               </button>
-              <Button variant="ghost" size="icon" className="cursor-pointer opacity-0 group-hover:opacity-100" onClick={() => handleEditChatTitle(chat.id)}>
+              <Button data-list-btn variant="ghost" size="icon" className="cursor-pointer" onClick={() => handleEditChatTitle(chat.id)}>
                 <Pencil className="size-4" />
               </Button>
               <Button 
+                data-list-btn
                 variant="ghost" 
                 size="icon" 
-                className="cursor-pointer opacity-0 group-hover:opacity-100"
+                className="cursor-pointer"
                 onClick={() => handleDeleteChat(chat.id)}
               >
                 <Trash2 className="size-4" />
