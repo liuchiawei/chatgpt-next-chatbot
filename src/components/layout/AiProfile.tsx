@@ -1,8 +1,9 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { cn } from "@/lib/utils";
 
-export default function AiProfile() {
+export default function AiProfile({ className }: { className?: string }) {
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className={cn("flex flex-col items-center justify-center", className)}>
       <Avatar className="size-32">
         <AvatarImage src="https://github.com/shadcn.png" />
         <AvatarFallback>
