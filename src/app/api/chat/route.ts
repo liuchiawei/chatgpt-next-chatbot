@@ -10,6 +10,10 @@ export async function POST(req: Request) {
   const result = streamText({
     model: openai("gpt-4o"),
     messages,
+    system:
+      "You are a professional writer. " +
+      "You write simple, clear, and concise Japanese content.",
+    // prompt: `Summarize the following article in 3-5 sentences: ${article}`,
     tools: {
       weather: tool({
         description: "Get the weather in a location (fahrenheit)",
