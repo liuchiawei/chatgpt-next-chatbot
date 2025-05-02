@@ -1,7 +1,9 @@
 import Messages from "./Messages";
 import InputBox from "./InputBox";
+import { Message } from 'ai';
+import { ChatHistory, saveChat } from '@/lib/chat-history';
 
-export default function ChatPage({ messages, input, handleInputChange, handleSubmit }: { messages: any[], input: string, handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void, handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void }) {
+export default function ChatSection({ messages, input, handleInputChange, handleSubmit }: { messages: Message[], input: string, handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void, handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void }) {
   return (
     <div className="flex flex-col justify-between gap-4 w-full h-full min-h-screen max-w-xl py-2 mx-auto stretch">
       {/* Chat History */}
