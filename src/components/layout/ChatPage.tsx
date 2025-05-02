@@ -5,9 +5,9 @@ export default function ChatPage({ messages, input, handleInputChange, handleSub
   return (
     <div className="flex flex-col justify-between gap-4 w-full h-full min-h-screen max-w-xl py-2 mx-auto stretch">
       {/* Chat History */}
-      <Messages messages={messages} />
+      <Messages messages={messages} className="bg-zinc-100 dark:bg-zinc-800" />
       {/* User Input Block */}
-      <InputBox input={input} handleInputChange={handleInputChange} handleSubmit={handleSubmit} />
+      <InputBox input={input} handleInputChange={handleInputChange} handleSubmit={handleSubmit} className="bg-zinc-100 dark:bg-zinc-800" />
     </div>
   );
 }

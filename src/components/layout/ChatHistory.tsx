@@ -2,11 +2,11 @@ import { Sidebar, SidebarContent, SidebarHeader, SidebarTrigger } from "@/compon
 
 export default function ChatHistory() {
   return (
-    <Sidebar className="p-4">
-      <SidebarHeader className="flex justify-center items-end">
+    <Sidebar className="bg-background">
+      <SidebarHeader className="p-4 flex justify-center items-end">
         <SidebarTrigger className="cursor-pointer" />
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="px-4">
         <ul>
           <li>
             <h1>Chat History</h1>
