@@ -4,7 +4,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/
 
 export default function InputOption() {
   return (
-    <div className="flex gap-2 *:size-8 *:cursor-pointer">
+    <div className="flex gap-2 *:size-8 *:cursor-pointer *:rounded-full **:hover:bg-zinc-200 dark:**:hover:bg-zinc-700">
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger asChild>
