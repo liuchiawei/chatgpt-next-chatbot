@@ -1,7 +1,6 @@
 import Messages from "./Messages";
 import InputBox from "./InputBox";
 import { Message } from 'ai';
-import { ChatHistory, saveChat } from '@/lib/chat-history';
 
 export default function ChatSection({ messages, input, handleInputChange, handleSubmit }: { messages: Message[], input: string, handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void, handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void }) {
   return (

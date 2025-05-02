@@ -6,12 +6,9 @@ import ChatSection from '@/components/layout/ChatSection';
 import ChatHistory from '@/components/layout/ChatHistory';
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { createNewChat, saveChat } from '@/lib/chat-history';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { Message } from 'ai';
+import { useState } from 'react';
 
 export default function Page() {
-  const router = useRouter();
   const [currentChat, setCurrentChat] = useState(() => {
     const newChat = createNewChat();
     saveChat(newChat);
@@ -30,18 +27,6 @@ export default function Page() {
       setCurrentChat(updatedChat);
     },
   });
-
-  useEffect(() => {
-    if (messages.length > 0) {
-      const updatedChat = {
-        ...currentChat,
-        messages: messages,
-        updatedAt: new Date()
-      };
-      saveChat(updatedChat);
-      setCurrentChat(updatedChat);
-    }
-  }, [messages]);
 
   return (
     <SidebarProvider>
