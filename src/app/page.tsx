@@ -5,7 +5,7 @@ import { useChat } from '@ai-sdk/react';
 export default function Chat() {
   const { messages, input, handleInputChange, handleSubmit } = useChat();
   return (
-    <div className="flex flex-col w-full max-w-md py-24 mx-auto stretch">
+    <div className="flex flex-col items-center justify-center w-full max-w-md py-24 mx-auto stretch">
       {/* Chat History */}
       {messages.map(message => (
         <div key={message.id} className="whitespace-pre-wrap">
