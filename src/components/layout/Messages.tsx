@@ -1,10 +1,11 @@
 'use client';
 
+import { Message } from "ai";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
 
-export default function Messages({ messages, className, containerClassName }: { messages: any[], className?: string, containerClassName?: string }) {
+export default function Messages({ messages, className, containerClassName }: { messages: Message[], className?: string, containerClassName?: string }) {
   const isMobile = useIsMobile();
   return (
     <div className={cn("flex flex-col gap-2 rounded-lg", containerClassName)}>
@@ -32,7 +33,7 @@ export default function Messages({ messages, className, containerClassName }: { 
             {message.role === 'user' ? 'Me' : 'AI'}
           </div>
           {/* body: message content */}
-          {message.parts.map((part: any, i: number) => {
+          {message.parts?.map((part: any, i: number) => {
             switch (part.type) {
               case 'text':
                 return <div className="block" key={`${message.id}-${i}`}>{part.text}</div>;

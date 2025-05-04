@@ -3,10 +3,6 @@
 import { useChat } from '@ai-sdk/react';
 import ThemeToggle from '@/components/common/ThemeToggle';
 import ChatSection from '@/components/layout/ChatSection';
-import ChatHistory from '@/components/layout/ChatHistory';
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { createNewChat, saveChat } from '@/lib/chat-history';
-import { useState } from 'react';
 
 export default function Page() {
   // const [currentChat, setCurrentChat] = useState(() => {
@@ -29,18 +25,16 @@ export default function Page() {
   });
 
   return (
-    <SidebarProvider>
-      <div className="w-full h-full flex bg-zinc-300 dark:bg-zinc-950">
-        <ThemeToggle className="fixed top-4 right-4" />
-        {/* <ChatHistory />
+    <div className="w-full h-full flex bg-zinc-300 dark:bg-zinc-950">
+      <ThemeToggle className="fixed top-4 right-4" />
+      {/* <ChatHistory />
         <SidebarTrigger className="fixed top-4 left-4 cursor-pointer" /> */}
-        <ChatSection 
+      <ChatSection 
           messages={messages} 
           input={input} 
           handleInputChange={handleInputChange} 
           handleSubmit={handleSubmit} 
         />
       </div>
-    </SidebarProvider>
   );
 }
