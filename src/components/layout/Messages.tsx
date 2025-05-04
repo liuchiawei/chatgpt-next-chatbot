@@ -1,5 +1,6 @@
 'use client';
 
+import Image from "next/image";
 import { Message } from "ai";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
@@ -39,9 +40,12 @@ export default function Messages({ messages, className, containerClassName }: { 
                 return <div className="block" key={`${message.id}-${i}`}>{part.text}</div>;
               case 'tool-invocation':
                 return (
-                  <pre key={`${message.id}-${i}`}>
-                    {JSON.stringify(part.toolInvocation, null, 2)}
-                  </pre>
+                  <div key={`${message.id}-${i}`}>
+                    <pre>
+                      {JSON.stringify(part.toolInvocation, null, 2)}
+                    </pre>
+                    <Image src={part.toolInvocation.image} alt={part.toolInvocation.prompt} width={500} height={500} />
+                  </div>
                 );
             }
             })}
