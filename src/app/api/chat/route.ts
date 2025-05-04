@@ -1,8 +1,8 @@
 import { openai } from "@ai-sdk/openai";
 import {
   streamText,
-  tool,
-  experimental_generateImage as generateImage,
+  // tool,
+  // experimental_generateImage as generateImage,
 } from "ai";
 import { z } from "zod";
 
