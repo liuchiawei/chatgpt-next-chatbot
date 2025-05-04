@@ -41,15 +41,16 @@ export default function Messages({ messages, className, containerClassName }: { 
                 case 'tool-invocation':
                   return (
                     // image container
-                    <div key={`${message.id}-${i}`} className="w-full">
+                    <div key={`${message.id}-${i}`} className="w-full max-w-lg flex justify-center items-center px-4 py-6">
                       <p>{part.text}</p>
                       {/* Test Block */}
                       {/* <pre>
-                        {JSON.stringify(part.toolInvocation.state, null, 2)}
+                        {JSON.stringify(part.toolInvocation, null, 2)}
                       </pre> */}
                       {(part.toolInvocation.state === "result") 
                       ? <img src={`data:image/png;base64,${part.toolInvocation.result.image}`} alt={part.toolInvocation.prompt} className="object-fit" />
-                      : <div>loading</div>
+                      // TODO: image skeleton
+                      : <div className="w-full p-10 aspect-square flex items-center justify-center bg-zinc-300 dark:bg-zinc-700 animate-pulse">Generating...</div>
                       }
                     </div>
                   );

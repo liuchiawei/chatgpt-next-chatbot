@@ -19,8 +19,9 @@ export async function POST(req: Request) {
       "You write simple, clear, and concise Japanese content.",
     // prompt: `Summarize the following article in 3-5 sentences: ${article}`,
     tools: {
+      // TODO: upload image to Cloud
       generateImageTool: tool({
-        description: "Generate an Ghibli style image based on a prompt",
+        description: "Generate an image based on a prompt",
         parameters: z.object({
           prompt: z.string().describe("The prompt to generate an image for"),
         }),
@@ -38,10 +39,10 @@ export async function POST(req: Request) {
             },
           });
           return { image: image.images[0].base64 };
-          // return Response.json({ base64: image.base64 });
         },
       }),
     },
+    maxSteps:10,
   });
 
   return result.toDataStreamResponse();
