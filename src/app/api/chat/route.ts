@@ -19,20 +19,20 @@ export async function POST(req: Request) {
       "You write simple, clear, and concise Japanese content.",
     // prompt: `Summarize the following article in 3-5 sentences: ${article}`,
     tools: {
-      generateImageTool: tool({
-        description: "Generate an image based on a prompt",
-        parameters: z.object({
-          prompt: z.string().describe("The prompt to generate an image for"),
-        }),
-        execute: async ({ prompt }) => {
-          const image = await generateImage({
-            model: openai("dall-e-3"),
-            prompt,
-            maxImagesPerCall: 1,
-          });
-          return { image };
-        },
-      }),
+      // generateImageTool: tool({
+      //   description: "Generate an image based on a prompt",
+      //   parameters: z.object({
+      //     prompt: z.string().describe("The prompt to generate an image for"),
+      //   }),
+      //   execute: async ({ prompt }) => {
+      //     const image = await generateImage({
+      //       model: openai("dall-e-3"),
+      //       prompt,
+      //       maxImagesPerCall: 1,
+      //     });
+      //     return { image };
+      //   },
+      // }),
     },
   });
 
