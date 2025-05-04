@@ -1,6 +1,5 @@
 'use client';
 
-import Image from "next/image";
 import { Message } from "ai";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
@@ -28,27 +27,34 @@ export default function Messages({ messages, className, containerClassName }: { 
               </AvatarFallback>
             </Avatar>
           )}
+          {/* message container */}
           <div className={cn("flex flex-col gap-1 w-fit py-2 px-4 rounded-md shadow-sm dark:shadow-none *:whitespace-pre-wrap", className)}>
-          {/* header: message role */}
-          <div className="text-xs text-zinc-300 dark:text-zinc-600">
-            {message.role === 'user' ? 'Me' : 'AI'}
-          </div>
-          {/* body: message content */}
-          {message.parts?.map((part: any, i: number) => {
-            switch (part.type) {
-              case 'text':
-                return <div className="block" key={`${message.id}-${i}`}>{part.text}</div>;
-              case 'tool-invocation':
-                return (
-                  <div key={`${message.id}-${i}`}>
-                    <pre>
-                      {JSON.stringify(part.toolInvocation, null, 2)}
-                    </pre>
-                    <Image src={part.toolInvocation.image} alt={part.toolInvocation.prompt} width={500} height={500} />
-                  </div>
-                );
-            }
-            })}
+            {/* header: role */}
+            <div className="text-xs text-zinc-300 dark:text-zinc-600">
+              {message.role === 'user' ? 'Me' : 'AI'}
+            </div>
+            {/* body: content */}
+            {message.parts?.map((part: any, i: number) => {
+              switch (part.type) {
+                case 'text':
+                  return <p className="block" key={`${message.id}-${i}`}>{part.text}</p>;
+                case 'tool-invocation':
+                  return (
+                    // image container
+                    <div key={`${message.id}-${i}`} className="w-full">
+                      <p>{part.text}</p>
+                      {/* Test Block */}
+                      {/* <pre>
+                        {JSON.stringify(part.toolInvocation.state, null, 2)}
+                      </pre> */}
+                      {(part.toolInvocation.state === "result") 
+                      ? <img src={`data:image/png;base64,${part.toolInvocation.result.image}`} alt={part.toolInvocation.prompt} className="object-fit" />
+                      : <div>loading</div>
+                      }
+                    </div>
+                  );
+              }
+              })}
           </div>
         </div>
       ))}

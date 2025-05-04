@@ -20,7 +20,7 @@ export async function POST(req: Request) {
     // prompt: `Summarize the following article in 3-5 sentences: ${article}`,
     tools: {
       generateImageTool: tool({
-        description: "Generate an image based on a prompt",
+        description: "Generate an Ghibli style image based on a prompt",
         parameters: z.object({
           prompt: z.string().describe("The prompt to generate an image for"),
         }),
@@ -28,8 +28,17 @@ export async function POST(req: Request) {
           const image = await generateImage({
             model: openai.image("dall-e-3"),
             prompt,
+            n: 1,
+            size: "1024x1024",
+            providerOptions: {
+              openai: {
+                style: "vivid",
+                quality: "standard",
+              },
+            },
           });
-          return { image: image, prompt: prompt };
+          return { image: image.images[0].base64 };
+          // return Response.json({ base64: image.base64 });
         },
       }),
     },
