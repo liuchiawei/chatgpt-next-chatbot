@@ -47,8 +47,9 @@ export default function Messages({ messages, className, containerClassName }: { 
                       {/* <pre>
                         {JSON.stringify(part.toolInvocation, null, 2)}
                       </pre> */}
-                      {(part.toolInvocation.state === "result") 
-                      ? <img src={`data:image/png;base64,${part.toolInvocation.result.image}`} alt={part.toolInvocation.prompt} className="object-fit" />
+                      {(part.toolInvocation.state === "result")
+                       /* eslint-disable-next-line @next/next/no-img-element */
+                      ? <img src={`data:image/png;base64,${part.toolInvocation.result.image}`} alt={part.toolInvocation.prompt} className="object-cover" />
                       // TODO: image skeleton
                       : <div className="w-full p-10 aspect-square flex items-center justify-center bg-zinc-300 dark:bg-zinc-700 animate-pulse">Generating...</div>
                       }
