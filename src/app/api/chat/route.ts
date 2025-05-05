@@ -29,7 +29,7 @@ export async function POST(req: Request) {
           const image = await generateImage({
             model: openai.image("dall-e-3"),
             prompt,
-            n: 1,
+            // n: 1,
             size: "1024x1024",
             providerOptions: {
               openai: {
@@ -38,7 +38,8 @@ export async function POST(req: Request) {
               },
             },
           });
-          return { image: image.images[0].base64 };
+          const base64 = image.images[0].base64
+          return { image: base64 };
         },
       }),
     },
