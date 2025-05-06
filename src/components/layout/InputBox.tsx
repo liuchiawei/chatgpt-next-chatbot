@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import InputOption from "@/components/common/InputOption";
-import ScrollDownAndSend from "@/components/common/ScrollDown";
+import ScrollDownAndSend from "@/components/common/ScrollDownAndSend";
 
 export default function InputBox({ input, handleInputChange, handleSubmit, className }: { input: string, handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void, handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void, className?: string }) {
   
