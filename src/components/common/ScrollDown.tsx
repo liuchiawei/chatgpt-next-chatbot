@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ArrowDown } from "lucide-react";
+import { Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-export default function ScrollDown() {
+export default function ScrollDownAndSend() {
   const [scrollTop, setScrollTop] = useState(0);
 
   useEffect(() => {
@@ -24,9 +24,10 @@ export default function ScrollDown() {
       window.scrollTo({ top: window.innerHeight + scrollTop, behavior: "smooth" });
     }
   };
+  
   return (
-    <Button onClick={scrollDown} variant="outline" className={`absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer`}>
-      <ArrowDown className="size-4" />
+    <Button type="submit" onClick={scrollDown} size="icon" className={`rounded-full cursor-pointer`}>
+      <Send className="size-4" />
     </Button>
   );
 }

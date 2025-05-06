@@ -1,8 +1,9 @@
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
 import { Send } from "lucide-react";
-import InputOption from "../common/InputOption";
 import { cn } from "@/lib/utils";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import InputOption from "@/components/common/InputOption";
+import ScrollDownAndSend from "@/components/common/ScrollDown";
 
 export default function InputBox({ input, handleInputChange, handleSubmit, className }: { input: string, handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void, handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void, className?: string }) {
   
@@ -15,9 +16,7 @@ export default function InputBox({ input, handleInputChange, handleSubmit, class
           placeholder="質問を入力してください"
           onChange={handleInputChange}
         />
-        <Button type="submit" size="icon" className="cursor-pointer rounded-full">
-          <Send className="size-4" />  
-        </Button>
+        <ScrollDownAndSend />
         <InputOption />
       </form>
   );
