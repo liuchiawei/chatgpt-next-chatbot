@@ -1,12 +1,12 @@
 'use client';
 
+import { useState } from 'react';
 import { useChat } from '@ai-sdk/react';
+import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
+import { createNewChat, saveChat } from '@/lib/chat-history';
 import ThemeToggle from '@/components/common/ThemeToggle';
 import ChatSection from '@/components/layout/ChatSection';
 import ChatHistory from '@/components/layout/ChatHistory';
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { createNewChat, saveChat } from '@/lib/chat-history';
-import { useState } from 'react';
 
 export default function Page() {
   const [currentChat, setCurrentChat] = useState(() => {
