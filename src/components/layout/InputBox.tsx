@@ -5,6 +5,7 @@ import InputOption from "../common/InputOption";
 import { cn } from "@/lib/utils";
 
 export default function InputBox({ input, handleInputChange, handleSubmit, className }: { input: string, handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void, handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void, className?: string }) {
+  
   return (
     <form onSubmit={handleSubmit} className={cn("grid grid-cols-[1fr_auto] gap-2 w-full p-2 mb-8 border rounded-lg shadow-xl", className)}>
         <Input
